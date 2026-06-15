@@ -1,0 +1,216 @@
+# Rise of Nations Development Journal
+
+**Date:** 6/15/2026
+
+## Topic: User-Defined Functions and Return Values
+
+Today I learned about user-defined functions.
+
+A function is a reusable block of code that performs a specific task. Functions can be called by other parts of the program, including the `main()` function.
+
+One of the first examples I explored was a function that simply returns the value 5.
+
+```cpp
+#include <iostream>
+
+int returnFive()
+{
+    return 5;
+}
+
+int main()
+{
+    std::cout << returnFive() << '\n';
+    std::cout << returnFive() + 10 << '\n';
+
+    returnFive();
+
+    return 0;
+}
+```
+
+This example demonstrated that functions can return values that can be used in calculations or displayed to the user.
+
+The function call:
+
+```cpp
+returnFive();
+```
+
+still executes the function, but the returned value is ignored because it is not being used by the program.
+
+### Getting Input Through a Function
+
+I also learned that functions can collect information from the user and return it back to the caller.
+
+```cpp
+#include <iostream>
+
+int getValueFromUser()
+{
+    int value {};
+    std::cout << "Enter an integer: ";
+    std::cin >> value;
+    return value;
+}
+
+int main()
+{
+    int value { getValueFromUser() };
+
+    std::cout << "You entered: "
+              << value << '\n';
+
+    std::cout << "The double of this number is: "
+              << 2 * value << '\n';
+
+    return 0;
+}
+```
+
+This example helped me understand how data can move between functions and the main program.
+
+### Application to Rise of Nations
+
+Functions will likely become one of the most important tools for developing Rise of Nations.
+
+Instead of placing all code inside `main()`, I could create separate functions for different game systems.
+
+Examples might include:
+
+```cpp
+selectCountry();
+displayResources();
+manageEconomy();
+tradeMenu();
+militaryActions();
+saveGame();
+```
+
+Using functions will make the project easier to organize, debug, and expand as new features are added.
+
+### Return Values
+
+I learned several important rules regarding return values.
+
+#### Functions Return One Value
+
+A value-returning function can only return a single value each time it is called.
+
+Examples:
+
+```cpp
+return 5;
+return oilAmount;
+return population;
+```
+
+Although functions only return one value directly, there are techniques for returning multiple pieces of information that I will learn later.
+
+#### Return Values Can Be Expressions
+
+A function does not need to return a literal value.
+
+It can return:
+
+* Variables
+* Mathematical expressions
+* Results from other function calls
+
+Examples:
+
+```cpp
+return value;
+return oil + food;
+return getPopulation();
+```
+
+#### Function Authors Define Meaning
+
+The meaning of a return value depends on the purpose of the function.
+
+A return value may represent:
+
+* A calculated result
+* User input
+* A status code
+* A selected game option
+
+### Status Codes
+
+I also learned about status codes.
+
+Programs can return values that indicate whether they completed successfully or encountered a problem.
+
+Examples include:
+
+```cpp
+EXIT_SUCCESS
+EXIT_FAILURE
+```
+
+These are provided by the C++ standard library:
+
+```cpp
+#include <cstdlib>
+```
+
+A successful program usually returns:
+
+```cpp
+return EXIT_SUCCESS;
+```
+
+while a program that encounters an unrecoverable error may return:
+
+```cpp
+return EXIT_FAILURE;
+```
+
+### Special Rule for main()
+
+Normally, functions that promise to return a value must provide a return statement.
+
+However, `main()` has a special exception.
+
+If no return statement is provided, the program automatically returns:
+
+```cpp
+0
+```
+
+Even though this is allowed, it is considered best practice to explicitly write:
+
+```cpp
+return 0;
+```
+
+to clearly communicate the program's intent.
+
+### Programming Principle: DRY
+
+I was introduced to the DRY principle:
+
+**Don't Repeat Yourself**
+
+The idea behind DRY is to avoid duplicating code unnecessarily.
+
+Functions help achieve this by allowing code to be written once and reused many times.
+
+For example, instead of rewriting the same resource display code throughout Rise of Nations, I could create a function:
+
+```cpp
+displayResources();
+```
+
+and call it whenever needed.
+
+This reduces errors and makes future updates easier.
+
+### Reflection
+
+Today's lesson was one of the most important lessons I have learned so far.
+
+Variables allow programs to store data, but functions allow programs to organize behavior.
+
+I am beginning to understand how larger programs are built from many small pieces that work together. Functions seem like they will become the foundation for organizing the systems in Rise of Nations, including country selection, resource management, diplomacy, economics, and military actions.
